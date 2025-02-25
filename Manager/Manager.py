@@ -23,6 +23,26 @@ def add_vedio(vedios):
     save_data(vedios)
     print("Vedio added successfully")
 
+def update_vedio(vedios):
+    list_vedios(vedios)
+    index = int(input("Enter the index of the vedio to update: "))
+    vedio = vedios[index-1]
+    name = input(f"Enter the new name for the vedio ({vedio['name']}): ")
+    time = input(f"Enter the new time for the vedio ({vedio['time']}): ")
+    vedio['name'] = name if name else vedio['name']
+    vedio['time'] = time if time else vedio['time']
+    save_data(vedios)
+    print("Vedio updated successfully")
+
+def delete_vedio(vedios):
+    list_vedios(vedios)
+    index = int(input("Enter the index of the vedio to delete: "))
+    vedio = vedios.pop(index-1)
+    save_data(vedios)
+    print("Vedio deleted successfully")
+
+
+
 def main():
     vedios = load_data()
     while True:
@@ -42,8 +62,10 @@ def main():
                 add_vedio(vedios)
             case "3":
                 update_vedio(vedios)
+                break
             case "4":
                 delete_vedio(vedios)
+                break
             case "5":
                 break
             case _:
